@@ -1,0 +1,28 @@
+<div>
+    <label>
+        Username:
+        <input type="text" name="caca" [formControl]="userName">
+        <!-- <button type="button" (click)="changeValue()">Change</button> -->
+    </label><br/>
+    <label>
+        Email:
+          <input type="email" [formControl]="userEmail">
+      </label><br/>
+      <label>
+        Password:
+          <input type="password" [formControl]="userPassword">
+      </label><br/>
+      <label>
+        Adress:
+          <input type="text" [formControl]="userAdress">
+      </label> <br/>
+
+      <button type="submit" (click)="onSumbit()">send</button>
+    <!-- {{userName.value}} -->
+  </div>
+
+  Name: {{model.userName}} <br />
+  EMail: {{model.userEmail}} <br />
+  Password: {{model.userPassword}} <br />
+  Adress: {{model.userAdress}} <br />
+
