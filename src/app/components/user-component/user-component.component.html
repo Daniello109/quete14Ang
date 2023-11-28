@@ -1,27 +1,32 @@
-<div>
-    <label>
-        Username:
-        <input type="text" name="caca" [formControl]="userName">
-        <!-- <button type="button" (click)="changeValue()">Change</button> -->
-    </label><br/>
-    <label>
-        Email:
-          <input type="email" [formControl]="userEmail">
-      </label><br/>
-      <label>
-        Password:
-          <input type="password" [formControl]="userPassword">
-      </label><br/>
-      <label>
-        Adress:
-          <input type="text" [formControl]="userAdress">
-      </label> <br/>
+<form [formGroup]="userForm" (ngSubmit)="onSumbit()"> <!-- aquí se vincula el formgroup con el atributo userForm del ts, usando la directiva [formGroup]. Este atributo userForm tiene muchas propiedades, como valid (https://angular.io/api/forms/FormGroup) 
+        nGSubmit va a permitirte llamar a la función que tengas para mandar el formulario, en este caso, onSubmit, del ts -->
+        
+        <label>
+            Username:
+            <input type="text" formControlName="userName"> <!-- para vincular los campos, se hace mediante formControlName -->
+        </label><br/>
+        <label>
+            Adress:
+            <input type="text" formControlName="userAdress">
+        </label><br/>
+    
+        <div formGroupName="credentials">
+            <label>
+                Email:
+                <input type="email" formControlName="userEmail">
+            </label><br/>
+            <label>
+                Password:
+                <input type="password" formControlName="userPassword">
+            </label><br/>        
+        </div>
+    
+    <button type="submit" [disabled]="!userForm.valid">Submit</button>
+    <!-- Al igual que un formControl, formGroup también tiene la propiedad value para ver el valor de los campos :
+    onSubmit() { console.log(this.userForm.value)} -->
+    </form>  
 
-      <button type="submit" (click)="onSumbit()">send</button>
-    <!-- {{userName.value}} -->
-  </div>
-
-  Name: {{model.userName}} <br />
+  Name: {{model.userName}}  <br /><!-- {{this.users[users.length].userName}} esto serviría para acceder al objeto de la lista mediante el índice del último elemento-->
   EMail: {{model.userEmail}} <br />
   Password: {{model.userPassword}} <br />
   Adress: {{model.userAdress}} <br />
